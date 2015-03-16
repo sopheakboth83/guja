@@ -38,4 +38,9 @@ public class DefaultServerEnvironment implements ServerEnvironment {
     return false;
   }
 
+    @Override
+    public String getDbDialect() {
+        return null;
+    }
+
 }

@@ -32,4 +32,5 @@ public interface ServerEnvironment {
 
    boolean isDevEnvironment();
 
+   String getDbDialect();
 }

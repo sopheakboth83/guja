@@ -29,13 +29,13 @@ import javax.cache.annotation.CacheValue;
 /**
  * The DFactory domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2015-02-07T18:50:32.440+0100.
+ * Generated on 2015-03-16T20:40:39.325+0100.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDFactoryDaoImpl
   extends AbstractDao<DFactory, java.lang.String> {
 
-  public GeneratedDFactoryDaoImpl(Supplier supplier) {
+  public GeneratedDFactoryDaoImpl(Supplier<Object, Object, Object, Object> supplier) {
     super(new DFactoryMapper(supplier), supplier);
   }
 
@@ -72,12 +72,34 @@ public class GeneratedDFactoryDaoImpl
   }
 
   /**
+   * query-page-by method for field baseUrl
+   * @param baseUrl the specified attribute
+   * @return a CursorPage of DFactorys for the specified baseUrl
+   */
+  public CursorPage<DFactory> queryPageByBaseUrl(java.lang.String baseUrl,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DFactoryMapper.Field.BASEURL.getFieldName(), baseUrl,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field clientId
    * @param clientId the specified attribute
    * @return an Iterable of DFactorys for the specified clientId
    */
   public Iterable<DFactory> queryByClientId(java.lang.String clientId) {
     return queryByField(null, DFactoryMapper.Field.CLIENTID.getFieldName(), clientId);
+  }
+
+  /**
+   * query-page-by method for field clientId
+   * @param clientId the specified attribute
+   * @return a CursorPage of DFactorys for the specified clientId
+   */
+  public CursorPage<DFactory> queryPageByClientId(java.lang.String clientId,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DFactoryMapper.Field.CLIENTID.getFieldName(), clientId,
+      requestedPageSize, cursorString);
   }
 
   /**
@@ -90,12 +112,34 @@ public class GeneratedDFactoryDaoImpl
   }
 
   /**
+   * query-page-by method for field clientSecret
+   * @param clientSecret the specified attribute
+   * @return a CursorPage of DFactorys for the specified clientSecret
+   */
+  public CursorPage<DFactory> queryPageByClientSecret(java.lang.String clientSecret,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DFactoryMapper.Field.CLIENTSECRET.getFieldName(), clientSecret,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field createdBy
    * @param createdBy the specified attribute
    * @return an Iterable of DFactorys for the specified createdBy
    */
   public Iterable<DFactory> queryByCreatedBy(java.lang.String createdBy) {
     return queryByField(null, DFactoryMapper.Field.CREATEDBY.getFieldName(), createdBy);
+  }
+
+  /**
+   * query-page-by method for field createdBy
+   * @param createdBy the specified attribute
+   * @return a CursorPage of DFactorys for the specified createdBy
+   */
+  public CursorPage<DFactory> queryPageByCreatedBy(java.lang.String createdBy,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DFactoryMapper.Field.CREATEDBY.getFieldName(), createdBy,
+      requestedPageSize, cursorString);
   }
 
   /**
@@ -108,6 +152,17 @@ public class GeneratedDFactoryDaoImpl
   }
 
   /**
+   * query-page-by method for field createdDate
+   * @param createdDate the specified attribute
+   * @return a CursorPage of DFactorys for the specified createdDate
+   */
+  public CursorPage<DFactory> queryPageByCreatedDate(java.util.Date createdDate,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DFactoryMapper.Field.CREATEDDATE.getFieldName(), createdDate,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field updatedBy
    * @param updatedBy the specified attribute
    * @return an Iterable of DFactorys for the specified updatedBy
@@ -117,12 +172,34 @@ public class GeneratedDFactoryDaoImpl
   }
 
   /**
+   * query-page-by method for field updatedBy
+   * @param updatedBy the specified attribute
+   * @return a CursorPage of DFactorys for the specified updatedBy
+   */
+  public CursorPage<DFactory> queryPageByUpdatedBy(java.lang.String updatedBy,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DFactoryMapper.Field.UPDATEDBY.getFieldName(), updatedBy,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field updatedDate
    * @param updatedDate the specified attribute
    * @return an Iterable of DFactorys for the specified updatedDate
    */
   public Iterable<DFactory> queryByUpdatedDate(java.util.Date updatedDate) {
     return queryByField(null, DFactoryMapper.Field.UPDATEDDATE.getFieldName(), updatedDate);
+  }
+
+  /**
+   * query-page-by method for field updatedDate
+   * @param updatedDate the specified attribute
+   * @return a CursorPage of DFactorys for the specified updatedDate
+   */
+  public CursorPage<DFactory> queryPageByUpdatedDate(java.util.Date updatedDate,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DFactoryMapper.Field.UPDATEDDATE.getFieldName(), updatedDate,
+      requestedPageSize, cursorString);
   }
 
 

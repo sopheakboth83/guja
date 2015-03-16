@@ -65,6 +65,7 @@ public class GujaGuiceServletContextListener extends GuiceServletContextListener
         new Mardao3DatastoreModule(),
         new CacheAnnotationsModule(),
         new JerseyServletModule() {
+
           private Properties bindProperties() {
             LOGGER.info("Bind application properties");
 

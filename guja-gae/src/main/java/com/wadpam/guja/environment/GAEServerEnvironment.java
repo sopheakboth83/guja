@@ -39,4 +39,9 @@ public class GAEServerEnvironment implements ServerEnvironment {
     return SystemProperty.Environment.Value.Development == SystemProperty.environment.value();
   }
 
+    @Override
+    public String getDbDialect() {
+        return null;
+    }
+
 }

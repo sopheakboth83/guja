@@ -1,30 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <parent>
-        <groupId>com.wadpam.guja</groupId>
         <artifactId>guja</artifactId>
+        <groupId>com.wadpam.guja</groupId>
         <version>0.8.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>guja-jetty-war</artifactId>
-    <packaging>war</packaging>
+    <artifactId>guja-j2ee</artifactId>
 
+    <packaging>jar</packaging>
 
+    <!-- Specify hard-coded project properties here -->
     <properties>
-        <jetty.version>9.2.1.v20140609</jetty.version>
-        <main.class>com.wadpam.guja.config.JettyMain</main.class>
     </properties>
 
     <dependencies>
-        <!-- Compile/runtime dependencies -->
         <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-webapp</artifactId>
-            <version>${jetty.version}</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>guja-core</artifactId>
         </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -32,28 +29,29 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.wadpam.guja</groupId>
-            <artifactId>guja-core</artifactId>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+            <version>4.0-beta</version>
         </dependency>
         <dependency>
-            <groupId>com.wadpam.guja</groupId>
-            <artifactId>guja-base</artifactId>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-persist</artifactId>
+            <version>4.0-beta</version>
         </dependency>
         <dependency>
-            <groupId>com.wadpam.guja</groupId>
-            <artifactId>guja-j2ee</artifactId>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-multibindings</artifactId>
+            <version>4.0-beta</version>
         </dependency>
-
         <dependency>
-            <groupId>net.sf.mardao</groupId>
-            <artifactId>mardao-core</artifactId>
-            <scope>compile</scope>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>17.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey.contribs</groupId>
+            <artifactId>jersey-guice</artifactId>
+            <version>1.18</version>
         </dependency>
         <dependency>
             <groupId>net.sf.mardao</groupId>
@@ -61,75 +59,55 @@
             <version>${mardao.version}</version>
         </dependency>
         <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jolbox</groupId>
-            <artifactId>bonecp</artifactId>
-            <version>0.8.0.RELEASE</version>
+            <groupId>javax.annotation</groupId>
+            <artifactId>jsr250-api</artifactId>
+            <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.14</version>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <version>2.4.4</version>
         </dependency>
-        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+        </dependency>
 
+        <!-- From parent -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>${artifactId}</finalName>
+
         <plugins>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
+                <artifactId>maven-eclipse-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>${main.class}</mainClass>
-                        </manifest>
-                    </archive>
-                    <archiveClasses>true</archiveClasses>
-                    <webResources>
-                        <!-- in order to interpolate version from pom into appengine-web.xml -->
-                        <resource>
-                            <directory>${basedir}/src/main/webapp/WEB-INF</directory>
-                            <filtering>true</filtering>
-                            <targetPath>WEB-INF</targetPath>
-                        </resource>
-                    </webResources>
+                    <wtpversion>2.0</wtpversion>
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.3.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>${main.class}</mainClass>
-                </configuration>
-            </plugin>
         </plugins>
+
     </build>
 
     <profiles>
@@ -173,7 +151,8 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <basePackage>com.wadpam.guja</basePackage>
+                            <basePackage>com.wadpam.guja.oauth2</basePackage>
+                            <!-- To generate the i18n code change the package name -->
                             <targetFolder>${project.basedir}/src/main/java</targetFolder>
                         </configuration>
                     </plugin>

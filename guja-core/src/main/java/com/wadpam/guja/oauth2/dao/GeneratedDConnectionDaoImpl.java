@@ -21,13 +21,13 @@ import com.wadpam.guja.oauth2.domain.DConnection;
 /**
  * The DConnection domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2015-02-07T18:50:32.440+0100.
+ * Generated on 2015-03-16T20:40:39.325+0100.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDConnectionDaoImpl
   extends AbstractDao<DConnection, java.lang.Long> {
 
-  public GeneratedDConnectionDaoImpl(Supplier supplier) {
+  public GeneratedDConnectionDaoImpl(Supplier<Object, Object, Object, Object> supplier) {
     super(new DConnectionMapper(supplier), supplier);
   }
 
@@ -54,12 +54,34 @@ public class GeneratedDConnectionDaoImpl
   }
 
   /**
+   * query-page-by method for field appArg0
+   * @param appArg0 the specified attribute
+   * @return a CursorPage of DConnections for the specified appArg0
+   */
+  public CursorPage<DConnection> queryPageByAppArg0(java.lang.String appArg0,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.APPARG0.getFieldName(), appArg0,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field createdBy
    * @param createdBy the specified attribute
    * @return an Iterable of DConnections for the specified createdBy
    */
   public Iterable<DConnection> queryByCreatedBy(java.lang.String createdBy) {
     return queryByField(null, DConnectionMapper.Field.CREATEDBY.getFieldName(), createdBy);
+  }
+
+  /**
+   * query-page-by method for field createdBy
+   * @param createdBy the specified attribute
+   * @return a CursorPage of DConnections for the specified createdBy
+   */
+  public CursorPage<DConnection> queryPageByCreatedBy(java.lang.String createdBy,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.CREATEDBY.getFieldName(), createdBy,
+      requestedPageSize, cursorString);
   }
 
   /**
@@ -72,12 +94,34 @@ public class GeneratedDConnectionDaoImpl
   }
 
   /**
+   * query-page-by method for field createdDate
+   * @param createdDate the specified attribute
+   * @return a CursorPage of DConnections for the specified createdDate
+   */
+  public CursorPage<DConnection> queryPageByCreatedDate(java.util.Date createdDate,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.CREATEDDATE.getFieldName(), createdDate,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field displayName
    * @param displayName the specified attribute
    * @return an Iterable of DConnections for the specified displayName
    */
   public Iterable<DConnection> queryByDisplayName(java.lang.String displayName) {
     return queryByField(null, DConnectionMapper.Field.DISPLAYNAME.getFieldName(), displayName);
+  }
+
+  /**
+   * query-page-by method for field displayName
+   * @param displayName the specified attribute
+   * @return a CursorPage of DConnections for the specified displayName
+   */
+  public CursorPage<DConnection> queryPageByDisplayName(java.lang.String displayName,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.DISPLAYNAME.getFieldName(), displayName,
+      requestedPageSize, cursorString);
   }
 
   /**
@@ -90,12 +134,34 @@ public class GeneratedDConnectionDaoImpl
   }
 
   /**
+   * query-page-by method for field expireTime
+   * @param expireTime the specified attribute
+   * @return a CursorPage of DConnections for the specified expireTime
+   */
+  public CursorPage<DConnection> queryPageByExpireTime(java.util.Date expireTime,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.EXPIRETIME.getFieldName(), expireTime,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field imageUrl
    * @param imageUrl the specified attribute
    * @return an Iterable of DConnections for the specified imageUrl
    */
   public Iterable<DConnection> queryByImageUrl(java.lang.String imageUrl) {
     return queryByField(null, DConnectionMapper.Field.IMAGEURL.getFieldName(), imageUrl);
+  }
+
+  /**
+   * query-page-by method for field imageUrl
+   * @param imageUrl the specified attribute
+   * @return a CursorPage of DConnections for the specified imageUrl
+   */
+  public CursorPage<DConnection> queryPageByImageUrl(java.lang.String imageUrl,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.IMAGEURL.getFieldName(), imageUrl,
+      requestedPageSize, cursorString);
   }
 
   /**
@@ -108,6 +174,17 @@ public class GeneratedDConnectionDaoImpl
   }
 
   /**
+   * query-page-by method for field profileUrl
+   * @param profileUrl the specified attribute
+   * @return a CursorPage of DConnections for the specified profileUrl
+   */
+  public CursorPage<DConnection> queryPageByProfileUrl(java.lang.String profileUrl,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.PROFILEURL.getFieldName(), profileUrl,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field providerId
    * @param providerId the specified attribute
    * @return an Iterable of DConnections for the specified providerId
@@ -117,12 +194,34 @@ public class GeneratedDConnectionDaoImpl
   }
 
   /**
+   * query-page-by method for field providerId
+   * @param providerId the specified attribute
+   * @return a CursorPage of DConnections for the specified providerId
+   */
+  public CursorPage<DConnection> queryPageByProviderId(java.lang.String providerId,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.PROVIDERID.getFieldName(), providerId,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field providerUserId
    * @param providerUserId the specified attribute
    * @return an Iterable of DConnections for the specified providerUserId
    */
   public Iterable<DConnection> queryByProviderUserId(java.lang.String providerUserId) {
     return queryByField(null, DConnectionMapper.Field.PROVIDERUSERID.getFieldName(), providerUserId);
+  }
+
+  /**
+   * query-page-by method for field providerUserId
+   * @param providerUserId the specified attribute
+   * @return a CursorPage of DConnections for the specified providerUserId
+   */
+  public CursorPage<DConnection> queryPageByProviderUserId(java.lang.String providerUserId,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.PROVIDERUSERID.getFieldName(), providerUserId,
+      requestedPageSize, cursorString);
   }
 
   /**
@@ -144,12 +243,34 @@ public class GeneratedDConnectionDaoImpl
   }
 
   /**
+   * query-page-by method for field secret
+   * @param secret the specified attribute
+   * @return a CursorPage of DConnections for the specified secret
+   */
+  public CursorPage<DConnection> queryPageBySecret(java.lang.String secret,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.SECRET.getFieldName(), secret,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field updatedBy
    * @param updatedBy the specified attribute
    * @return an Iterable of DConnections for the specified updatedBy
    */
   public Iterable<DConnection> queryByUpdatedBy(java.lang.String updatedBy) {
     return queryByField(null, DConnectionMapper.Field.UPDATEDBY.getFieldName(), updatedBy);
+  }
+
+  /**
+   * query-page-by method for field updatedBy
+   * @param updatedBy the specified attribute
+   * @return a CursorPage of DConnections for the specified updatedBy
+   */
+  public CursorPage<DConnection> queryPageByUpdatedBy(java.lang.String updatedBy,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.UPDATEDBY.getFieldName(), updatedBy,
+      requestedPageSize, cursorString);
   }
 
   /**
@@ -162,6 +283,17 @@ public class GeneratedDConnectionDaoImpl
   }
 
   /**
+   * query-page-by method for field updatedDate
+   * @param updatedDate the specified attribute
+   * @return a CursorPage of DConnections for the specified updatedDate
+   */
+  public CursorPage<DConnection> queryPageByUpdatedDate(java.util.Date updatedDate,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.UPDATEDDATE.getFieldName(), updatedDate,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field userId
    * @param userId the specified attribute
    * @return an Iterable of DConnections for the specified userId
@@ -171,12 +303,34 @@ public class GeneratedDConnectionDaoImpl
   }
 
   /**
+   * query-page-by method for field userId
+   * @param userId the specified attribute
+   * @return a CursorPage of DConnections for the specified userId
+   */
+  public CursorPage<DConnection> queryPageByUserId(java.lang.Long userId,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.USERID.getFieldName(), userId,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field userRoles
    * @param userRoles the specified attribute
    * @return an Iterable of DConnections for the specified userRoles
    */
   public Iterable<DConnection> queryByUserRoles(java.lang.String userRoles) {
     return queryByField(null, DConnectionMapper.Field.USERROLES.getFieldName(), userRoles);
+  }
+
+  /**
+   * query-page-by method for field userRoles
+   * @param userRoles the specified attribute
+   * @return a CursorPage of DConnections for the specified userRoles
+   */
+  public CursorPage<DConnection> queryPageByUserRoles(java.lang.String userRoles,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DConnectionMapper.Field.USERROLES.getFieldName(), userRoles,
+      requestedPageSize, cursorString);
   }
 
 

@@ -25,20 +25,28 @@ package com.wadpam.guja.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import com.google.inject.*;
 import com.google.inject.name.Names;
 import com.google.inject.servlet.GuiceServletContextListener;
+import com.jolbox.bonecp.BoneCPDataSource;
+import com.mysql.jdbc.Driver;
 import com.sun.jersey.guice.JerseyServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 import com.wadpam.guja.cache.annotations.CacheAnnotationsModule;
 import com.wadpam.guja.jackson.NonNullObjectMapperProvider;
 import com.wadpam.guja.oauth2.web.OAuth2Filter;
 import com.wadpam.guja.oauth2.web.Oauth2ClientAuthenticationFilter;
+import com.wadpam.guja.persist.Mardao3JdbcModule;
 import com.wadpam.guja.web.CORSFilter;
+import net.sf.mardao.dao.JdbcDialect;
+import net.sf.mardao.dao.JdbcSupplier;
+import net.sf.mardao.dao.Supplier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.support.incrementer.DataFieldMaxValueIncrementer;
+import org.springframework.jdbc.support.incrementer.MySQLMaxValueIncrementer;
 
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -60,10 +68,36 @@ public class GujaGuiceServletContextListener extends GuiceServletContextListener
         // bind both authorization server and federated:
         new GujaCoreModule(true, true),
         new GujaBaseModule(),
-//        new Mardao3DatastoreModule(),
+        new Mardao3JdbcModule(JdbcDialect.MySQL),
+        new GujaJ2eeModule(JdbcDialect.MySQL.name()),
         new CacheAnnotationsModule(),
         new JerseyServletModule() {
-          private Properties bindProperties() {
+
+            private DataSource _dataSource = null;
+
+            @Provides
+            @Singleton
+            public DataSource createDataSource() {
+                if (null == _dataSource) {
+                    BoneCPDataSource dataSource = new BoneCPDataSource();
+                    dataSource.setJdbcUrl("jdbc:mysql://localhost/guja");
+                    dataSource.setDriverClass(Driver.class.getName());
+                    dataSource.setUsername("guja");
+                    dataSource.setPassword("guja");
+                    _dataSource = dataSource;
+                }
+                return _dataSource;
+            }
+
+            @Provides
+            @Singleton
+            public DataFieldMaxValueIncrementer createIncrementer() {
+                MySQLMaxValueIncrementer incrementer = new MySQLMaxValueIncrementer(createDataSource(), "id_sequence", "highest");
+                return incrementer;
+            }
+
+
+            private Properties bindProperties() {
             LOGGER.info("Bind application properties");
 
             Properties properties = new Properties();

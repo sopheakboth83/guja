@@ -28,7 +28,13 @@ public class DelegatingCrudDao implements CrudDao<String, Long> {
     return delegateDao.count(o);
   }
 
-  @CachePut
+    @CachePut
+    @Override
+    public Long insert(Object o, Long aLong, String s) throws IOException {
+        return delegateDao.insert(o, aLong, s);
+    }
+
+    @CachePut
   @Override
   public Long put(@CacheKey Object parentKey, @CacheKey Long aLong, @CacheValue String s) throws IOException {
     return delegateDao.put(parentKey, aLong, s);

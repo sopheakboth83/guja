@@ -1,9 +1,22 @@
 package com.wadpam.guja.oauth2.dao;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.TreeMap;
 import java.nio.ByteBuffer;
 
+import javax.persistence.Basic;
+import javax.persistence.Id;
+
+import net.sf.mardao.core.ColumnField;
+import net.sf.mardao.core.CreatedBy;
+import net.sf.mardao.core.CreatedDate;
+import net.sf.mardao.core.Parent;
+import net.sf.mardao.core.UpdatedBy;
+import net.sf.mardao.core.UpdatedDate;
 import net.sf.mardao.dao.Mapper;
 import net.sf.mardao.dao.Supplier;
 import net.sf.mardao.domain.AbstractEntityBuilder;
@@ -12,7 +25,7 @@ import com.wadpam.guja.oauth2.domain.DConnection;
 /**
  * The DConnection domain-object specific mapping methods go here.
  *
- * Generated on 2015-02-07T18:50:32.440+0100.
+ * Generated on 2015-03-16T20:40:39.325+0100.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class DConnectionMapper
@@ -50,6 +63,62 @@ public class DConnectionMapper
     }
   }
 
+  private static final Map<String, ColumnField> BASIC_FIELDS = new TreeMap<String, ColumnField>();
+  private static final Map<Class, ColumnField> SPECIAL_FIELDS = new HashMap<Class, ColumnField>();
+  private static final Map<String, ColumnField> ALL_FIELDS = new TreeMap<String, ColumnField>();
+
+  static {
+    SPECIAL_FIELDS.put(Id.class,
+        new ColumnField(Field.ID.getFieldName(), Long.class, Id.class));
+    BASIC_FIELDS.put(Field.ACCESSTOKEN.getFieldName(),
+        new ColumnField(Field.ACCESSTOKEN.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.APPARG0.getFieldName(),
+        new ColumnField(Field.APPARG0.getFieldName(), String.class, Basic.class));
+    SPECIAL_FIELDS.put(CreatedBy.class,
+        new ColumnField(Field.CREATEDBY.getFieldName(), String.class, CreatedBy.class));
+    SPECIAL_FIELDS.put(CreatedDate.class,
+        new ColumnField(Field.CREATEDDATE.getFieldName(), Date.class, CreatedDate.class));
+    BASIC_FIELDS.put(Field.DISPLAYNAME.getFieldName(),
+        new ColumnField(Field.DISPLAYNAME.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.EXPIRETIME.getFieldName(),
+        new ColumnField(Field.EXPIRETIME.getFieldName(), Date.class, Basic.class));
+    BASIC_FIELDS.put(Field.IMAGEURL.getFieldName(),
+        new ColumnField(Field.IMAGEURL.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.PROFILEURL.getFieldName(),
+        new ColumnField(Field.PROFILEURL.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.PROVIDERID.getFieldName(),
+        new ColumnField(Field.PROVIDERID.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.PROVIDERUSERID.getFieldName(),
+        new ColumnField(Field.PROVIDERUSERID.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.REFRESHTOKEN.getFieldName(),
+        new ColumnField(Field.REFRESHTOKEN.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.SECRET.getFieldName(),
+        new ColumnField(Field.SECRET.getFieldName(), String.class, Basic.class));
+    SPECIAL_FIELDS.put(UpdatedBy.class,
+        new ColumnField(Field.UPDATEDBY.getFieldName(), String.class, UpdatedBy.class));
+    SPECIAL_FIELDS.put(UpdatedDate.class,
+        new ColumnField(Field.UPDATEDDATE.getFieldName(), Date.class, UpdatedDate.class));
+    BASIC_FIELDS.put(Field.USERID.getFieldName(),
+        new ColumnField(Field.USERID.getFieldName(), Long.class, Basic.class));
+    BASIC_FIELDS.put(Field.USERROLES.getFieldName(),
+        new ColumnField(Field.USERROLES.getFieldName(), String.class, Basic.class));
+
+    ALL_FIELDS.putAll(BASIC_FIELDS);
+    for (ColumnField sf : SPECIAL_FIELDS.values()) {
+        ALL_FIELDS.put(sf.getColumnName(), sf);
+    }
+  }
+
+  @Override
+  public Map<String, ColumnField> getBasicFields() {
+    return BASIC_FIELDS;
+  }
+
+  @Override
+  public Map<Class, ColumnField> getSpecialFields() {
+    return SPECIAL_FIELDS;
+  }
+
   public DConnectionMapper(Supplier supplier) {
     this.supplier = supplier;
   }
@@ -61,40 +130,72 @@ public class DConnectionMapper
 
   @Override
   public DConnection fromReadValue(Object value) {
-    final DConnection entity = new DConnection();
+    return fromReadValue(value, supplier);
+  }
+
+  @Override
+  public <RV> DConnection fromReadValue(RV value, Supplier<Object, RV, ?, ?> specificSupplier) {
+    DConnection entity = (DConnection) specificSupplier.createEntity(this, value);
+    if (null != entity) {
+      return entity;
+    }
+
+    entity = new DConnection();
 
     // set primary key:
-    final Object key = supplier.getKey(value, Field.ID.getFieldName());
-    entity.setId(supplier.toLongKey(key));
+    final Object key = specificSupplier.getKey(value, Field.ID.getFieldName());
+    entity.setId(specificSupplier.toLongKey(key));
 
     // set all fields:
-    entity.setAccessToken(supplier.getString(value, Field.ACCESSTOKEN.getFieldName()));
-    entity.setAppArg0(supplier.getString(value, Field.APPARG0.getFieldName()));
-    entity.setCreatedBy(supplier.getString(value, Field.CREATEDBY.getFieldName()));
-    entity.setCreatedDate(supplier.getDate(value, Field.CREATEDDATE.getFieldName()));
-    entity.setDisplayName(supplier.getString(value, Field.DISPLAYNAME.getFieldName()));
-    entity.setExpireTime(supplier.getDate(value, Field.EXPIRETIME.getFieldName()));
-    entity.setImageUrl(supplier.getString(value, Field.IMAGEURL.getFieldName()));
-    entity.setProfileUrl(supplier.getString(value, Field.PROFILEURL.getFieldName()));
-    entity.setProviderId(supplier.getString(value, Field.PROVIDERID.getFieldName()));
-    entity.setProviderUserId(supplier.getString(value, Field.PROVIDERUSERID.getFieldName()));
-    entity.setRefreshToken(supplier.getString(value, Field.REFRESHTOKEN.getFieldName()));
-    entity.setSecret(supplier.getString(value, Field.SECRET.getFieldName()));
-    entity.setUpdatedBy(supplier.getString(value, Field.UPDATEDBY.getFieldName()));
-    entity.setUpdatedDate(supplier.getDate(value, Field.UPDATEDDATE.getFieldName()));
-    entity.setUserId(supplier.getLong(value, Field.USERID.getFieldName()));
-    entity.setUserRoles(supplier.getString(value, Field.USERROLES.getFieldName()));
+    entity.setAccessToken(specificSupplier.getString(value, Field.ACCESSTOKEN.getFieldName()));
+    entity.setAppArg0(specificSupplier.getString(value, Field.APPARG0.getFieldName()));
+    entity.setCreatedBy(specificSupplier.getString(value, Field.CREATEDBY.getFieldName()));
+    entity.setCreatedDate(specificSupplier.getDate(value, Field.CREATEDDATE.getFieldName()));
+    entity.setDisplayName(specificSupplier.getString(value, Field.DISPLAYNAME.getFieldName()));
+    entity.setExpireTime(specificSupplier.getDate(value, Field.EXPIRETIME.getFieldName()));
+    entity.setImageUrl(specificSupplier.getString(value, Field.IMAGEURL.getFieldName()));
+    entity.setProfileUrl(specificSupplier.getString(value, Field.PROFILEURL.getFieldName()));
+    entity.setProviderId(specificSupplier.getString(value, Field.PROVIDERID.getFieldName()));
+    entity.setProviderUserId(specificSupplier.getString(value, Field.PROVIDERUSERID.getFieldName()));
+    entity.setRefreshToken(specificSupplier.getString(value, Field.REFRESHTOKEN.getFieldName()));
+    entity.setSecret(specificSupplier.getString(value, Field.SECRET.getFieldName()));
+    entity.setUpdatedBy(specificSupplier.getString(value, Field.UPDATEDBY.getFieldName()));
+    entity.setUpdatedDate(specificSupplier.getDate(value, Field.UPDATEDDATE.getFieldName()));
+    entity.setUserId(specificSupplier.getLong(value, Field.USERID.getFieldName()));
+    entity.setUserRoles(specificSupplier.getString(value, Field.USERROLES.getFieldName()));
     return entity;
   }
+
+    public Field getCreatedByField() {
+    return Field.CREATEDBY;
+    }
 
   @Override
   public String getCreatedByColumnName() {
     return Field.CREATEDBY.getFieldName();
   }
 
+    public Field getCreatedDateField() {
+    return Field.CREATEDDATE;
+    }
+
   @Override
   public String getCreatedDateColumnName() {
     return Field.CREATEDDATE.getFieldName();
+  }
+
+  public Field getPrimaryKeyField() {
+    return Field.ID;
+  }
+
+  @Override
+  public String getPrimaryKeyColumnName() {
+    return Field.ID.getFieldName();
+  }
+
+  @Override
+  public String getParentKeyColumnName() {
+    return null;
   }
 
   @Override
@@ -123,12 +224,17 @@ public class DConnectionMapper
   }
 
   @Override
+  public void setPrimaryKey(Object writeValue, Object primaryKey) {
+    supplier.setLong(writeValue, Field.ID.getFieldName(), supplier.toLongKey(primaryKey));
+  }
+
+  @Override
   public void updateEntityPostWrite(DConnection entity, Object key, Object value) {
     entity.setId(supplier.toLongKey(key));
-    entity.setCreatedBy(supplier.getString(value, Field.CREATEDBY.getFieldName()));
-    entity.setCreatedDate(supplier.getDate(value, Field.CREATEDDATE.getFieldName()));
-    entity.setUpdatedBy(supplier.getString(value, Field.UPDATEDBY.getFieldName()));
-    entity.setUpdatedDate(supplier.getDate(value, Field.UPDATEDDATE.getFieldName()));
+    entity.setCreatedBy(supplier.getWriteString(value, Field.CREATEDBY.getFieldName()));
+    entity.setCreatedDate(supplier.getWriteDate(value, Field.CREATEDDATE.getFieldName()));
+    entity.setUpdatedBy(supplier.getWriteString(value, Field.UPDATEDBY.getFieldName()));
+    entity.setUpdatedDate(supplier.getWriteDate(value, Field.UPDATEDDATE.getFieldName()));
 }
 
 @Override
@@ -145,7 +251,9 @@ public class DConnectionMapper
   public Object toWriteValue(DConnection entity) {
     final Long id = getId(entity);
     final Object parentKey = getParentKey(entity);
-    final Object value = supplier.createWriteValue(parentKey, getKind(), id);
+    final Object value = supplier.createWriteValue(this, parentKey, id, entity);
+    // some suppliers cannot set the keys in above method
+    supplier.setPrimaryKey(value, this, Field.ID.getFieldName(), toKey(parentKey, id), entity);
 
     // set all fields:
     supplier.setString(value, Field.ACCESSTOKEN.getFieldName(), entity.getAccessToken());
@@ -166,6 +274,42 @@ public class DConnectionMapper
     supplier.setString(value, Field.USERROLES.getFieldName(), entity.getUserRoles());
     return value;
   }
+
+//  @Override
+  public String getWriteSQL(Serializable id, Object writeValue, Collection arguments) {
+    final StringBuilder sql = new StringBuilder("UPDATE ")
+        .append(getKind())
+        .append(" SET ");
+
+    boolean first = true;
+    for (Field f : Field.values()) {
+        if (!getPrimaryKeyField().equals(f) &&
+            !getCreatedByField().equals(f) &&
+            !getCreatedDateField().equals(f)) {
+           if (first) {
+                first = false;
+           }
+           else {
+                sql.append(", ");
+           }
+           sql.append(f.getFieldName())
+            .append("=?");
+           if (null != arguments && null != writeValue) {
+            Object arg = supplier.getWriteObject(writeValue, f.getFieldName());
+            arguments.add(arg);
+           }
+        }
+    }
+
+    sql.append(" WHERE ")
+        .append(getPrimaryKeyColumnName())
+        .append("=?");
+    if (null != arguments) {
+        arguments.add(id);
+    }
+    return sql.toString();
+  }
+
 
   public static Builder newBuilder() {
     return new Builder();

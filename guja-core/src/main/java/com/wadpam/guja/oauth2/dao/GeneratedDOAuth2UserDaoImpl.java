@@ -29,13 +29,13 @@ import javax.cache.annotation.CacheValue;
 /**
  * The DOAuth2User domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2015-02-07T18:50:32.440+0100.
+ * Generated on 2015-03-16T20:40:39.325+0100.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDOAuth2UserDaoImpl
   extends AbstractDao<DOAuth2User, java.lang.Long> {
 
-  public GeneratedDOAuth2UserDaoImpl(Supplier supplier) {
+  public GeneratedDOAuth2UserDaoImpl(Supplier<Object, Object, Object, Object> supplier) {
     super(new DOAuth2UserMapper(supplier), supplier);
   }
 
@@ -72,6 +72,17 @@ public class GeneratedDOAuth2UserDaoImpl
   }
 
   /**
+   * query-page-by method for field createdBy
+   * @param createdBy the specified attribute
+   * @return a CursorPage of DOAuth2Users for the specified createdBy
+   */
+  public CursorPage<DOAuth2User> queryPageByCreatedBy(java.lang.String createdBy,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DOAuth2UserMapper.Field.CREATEDBY.getFieldName(), createdBy,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field createdDate
    * @param createdDate the specified attribute
    * @return an Iterable of DOAuth2Users for the specified createdDate
@@ -81,12 +92,34 @@ public class GeneratedDOAuth2UserDaoImpl
   }
 
   /**
+   * query-page-by method for field createdDate
+   * @param createdDate the specified attribute
+   * @return a CursorPage of DOAuth2Users for the specified createdDate
+   */
+  public CursorPage<DOAuth2User> queryPageByCreatedDate(java.util.Date createdDate,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DOAuth2UserMapper.Field.CREATEDDATE.getFieldName(), createdDate,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field displayName
    * @param displayName the specified attribute
    * @return an Iterable of DOAuth2Users for the specified displayName
    */
   public Iterable<DOAuth2User> queryByDisplayName(java.lang.String displayName) {
     return queryByField(null, DOAuth2UserMapper.Field.DISPLAYNAME.getFieldName(), displayName);
+  }
+
+  /**
+   * query-page-by method for field displayName
+   * @param displayName the specified attribute
+   * @return a CursorPage of DOAuth2Users for the specified displayName
+   */
+  public CursorPage<DOAuth2User> queryPageByDisplayName(java.lang.String displayName,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DOAuth2UserMapper.Field.DISPLAYNAME.getFieldName(), displayName,
+      requestedPageSize, cursorString);
   }
 
   /**
@@ -108,12 +141,34 @@ public class GeneratedDOAuth2UserDaoImpl
   }
 
   /**
+   * query-page-by method for field profileLink
+   * @param profileLink the specified attribute
+   * @return a CursorPage of DOAuth2Users for the specified profileLink
+   */
+  public CursorPage<DOAuth2User> queryPageByProfileLink(java.lang.String profileLink,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DOAuth2UserMapper.Field.PROFILELINK.getFieldName(), profileLink,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field roles
    * @param roles the specified attribute
    * @return an Iterable of DOAuth2Users for the specified roles
    */
   public Iterable<DOAuth2User> queryByRoles(java.lang.Object roles) {
     return queryByField(null, DOAuth2UserMapper.Field.ROLES.getFieldName(), roles);
+  }
+
+  /**
+   * query-page-by method for field roles
+   * @param roles the specified attribute
+   * @return a CursorPage of DOAuth2Users for the specified roles
+   */
+  public CursorPage<DOAuth2User> queryPageByRoles(java.lang.Object roles,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DOAuth2UserMapper.Field.ROLES.getFieldName(), roles,
+      requestedPageSize, cursorString);
   }
 
   /**
@@ -126,12 +181,34 @@ public class GeneratedDOAuth2UserDaoImpl
   }
 
   /**
+   * query-page-by method for field state
+   * @param state the specified attribute
+   * @return a CursorPage of DOAuth2Users for the specified state
+   */
+  public CursorPage<DOAuth2User> queryPageByState(java.lang.Integer state,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DOAuth2UserMapper.Field.STATE.getFieldName(), state,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field thumbnailUrl
    * @param thumbnailUrl the specified attribute
    * @return an Iterable of DOAuth2Users for the specified thumbnailUrl
    */
   public Iterable<DOAuth2User> queryByThumbnailUrl(java.lang.String thumbnailUrl) {
     return queryByField(null, DOAuth2UserMapper.Field.THUMBNAILURL.getFieldName(), thumbnailUrl);
+  }
+
+  /**
+   * query-page-by method for field thumbnailUrl
+   * @param thumbnailUrl the specified attribute
+   * @return a CursorPage of DOAuth2Users for the specified thumbnailUrl
+   */
+  public CursorPage<DOAuth2User> queryPageByThumbnailUrl(java.lang.String thumbnailUrl,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DOAuth2UserMapper.Field.THUMBNAILURL.getFieldName(), thumbnailUrl,
+      requestedPageSize, cursorString);
   }
 
   /**
@@ -144,12 +221,34 @@ public class GeneratedDOAuth2UserDaoImpl
   }
 
   /**
+   * query-page-by method for field updatedBy
+   * @param updatedBy the specified attribute
+   * @return a CursorPage of DOAuth2Users for the specified updatedBy
+   */
+  public CursorPage<DOAuth2User> queryPageByUpdatedBy(java.lang.String updatedBy,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DOAuth2UserMapper.Field.UPDATEDBY.getFieldName(), updatedBy,
+      requestedPageSize, cursorString);
+  }
+
+  /**
    * query-by method for field updatedDate
    * @param updatedDate the specified attribute
    * @return an Iterable of DOAuth2Users for the specified updatedDate
    */
   public Iterable<DOAuth2User> queryByUpdatedDate(java.util.Date updatedDate) {
     return queryByField(null, DOAuth2UserMapper.Field.UPDATEDDATE.getFieldName(), updatedDate);
+  }
+
+  /**
+   * query-page-by method for field updatedDate
+   * @param updatedDate the specified attribute
+   * @return a CursorPage of DOAuth2Users for the specified updatedDate
+   */
+  public CursorPage<DOAuth2User> queryPageByUpdatedDate(java.util.Date updatedDate,
+      int requestedPageSize, String cursorString) {
+    return queryPageByField(null, DOAuth2UserMapper.Field.UPDATEDDATE.getFieldName(), updatedDate,
+      requestedPageSize, cursorString);
   }
 
 

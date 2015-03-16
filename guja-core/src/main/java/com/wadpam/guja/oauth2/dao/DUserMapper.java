@@ -1,9 +1,22 @@
 package com.wadpam.guja.oauth2.dao;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.TreeMap;
 import java.nio.ByteBuffer;
 
+import javax.persistence.Basic;
+import javax.persistence.Id;
+
+import net.sf.mardao.core.ColumnField;
+import net.sf.mardao.core.CreatedBy;
+import net.sf.mardao.core.CreatedDate;
+import net.sf.mardao.core.Parent;
+import net.sf.mardao.core.UpdatedBy;
+import net.sf.mardao.core.UpdatedDate;
 import net.sf.mardao.dao.Mapper;
 import net.sf.mardao.dao.Supplier;
 import net.sf.mardao.domain.AbstractEntityBuilder;
@@ -12,7 +25,7 @@ import com.wadpam.guja.oauth2.domain.DUser;
 /**
  * The DUser domain-object specific mapping methods go here.
  *
- * Generated on 2015-02-07T18:50:32.440+0100.
+ * Generated on 2015-03-16T20:40:39.325+0100.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class DUserMapper
@@ -57,6 +70,76 @@ public class DUserMapper
     }
   }
 
+  private static final Map<String, ColumnField> BASIC_FIELDS = new TreeMap<String, ColumnField>();
+  private static final Map<Class, ColumnField> SPECIAL_FIELDS = new HashMap<Class, ColumnField>();
+  private static final Map<String, ColumnField> ALL_FIELDS = new TreeMap<String, ColumnField>();
+
+  static {
+    SPECIAL_FIELDS.put(Id.class,
+        new ColumnField(Field.ID.getFieldName(), Long.class, Id.class));
+    BASIC_FIELDS.put(Field.ADDRESS1.getFieldName(),
+        new ColumnField(Field.ADDRESS1.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.ADDRESS2.getFieldName(),
+        new ColumnField(Field.ADDRESS2.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.BIRTHINFO.getFieldName(),
+        new ColumnField(Field.BIRTHINFO.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.CITY.getFieldName(),
+        new ColumnField(Field.CITY.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.COUNTRY.getFieldName(),
+        new ColumnField(Field.COUNTRY.getFieldName(), String.class, Basic.class));
+    SPECIAL_FIELDS.put(CreatedBy.class,
+        new ColumnField(Field.CREATEDBY.getFieldName(), String.class, CreatedBy.class));
+    SPECIAL_FIELDS.put(CreatedDate.class,
+        new ColumnField(Field.CREATEDDATE.getFieldName(), Date.class, CreatedDate.class));
+    BASIC_FIELDS.put(Field.DISPLAYNAME.getFieldName(),
+        new ColumnField(Field.DISPLAYNAME.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.EMAIL.getFieldName(),
+        new ColumnField(Field.EMAIL.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.FIRSTNAME.getFieldName(),
+        new ColumnField(Field.FIRSTNAME.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.FRIENDS.getFieldName(),
+        new ColumnField(Field.FRIENDS.getFieldName(), Collection.class, Basic.class));
+    BASIC_FIELDS.put(Field.LASTNAME.getFieldName(),
+        new ColumnField(Field.LASTNAME.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.PASSWORD.getFieldName(),
+        new ColumnField(Field.PASSWORD.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.PHONENUMBER1.getFieldName(),
+        new ColumnField(Field.PHONENUMBER1.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.PHONENUMBER2.getFieldName(),
+        new ColumnField(Field.PHONENUMBER2.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.PROFILELINK.getFieldName(),
+        new ColumnField(Field.PROFILELINK.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.ROLES.getFieldName(),
+        new ColumnField(Field.ROLES.getFieldName(), Collection.class, Basic.class));
+    BASIC_FIELDS.put(Field.STATE.getFieldName(),
+        new ColumnField(Field.STATE.getFieldName(), Integer.class, Basic.class));
+    BASIC_FIELDS.put(Field.THUMBNAILURL.getFieldName(),
+        new ColumnField(Field.THUMBNAILURL.getFieldName(), String.class, Basic.class));
+    SPECIAL_FIELDS.put(UpdatedBy.class,
+        new ColumnField(Field.UPDATEDBY.getFieldName(), String.class, UpdatedBy.class));
+    SPECIAL_FIELDS.put(UpdatedDate.class,
+        new ColumnField(Field.UPDATEDDATE.getFieldName(), Date.class, UpdatedDate.class));
+    BASIC_FIELDS.put(Field.USERNAME.getFieldName(),
+        new ColumnField(Field.USERNAME.getFieldName(), String.class, Basic.class));
+    BASIC_FIELDS.put(Field.ZIPCODE.getFieldName(),
+        new ColumnField(Field.ZIPCODE.getFieldName(), String.class, Basic.class));
+
+    ALL_FIELDS.putAll(BASIC_FIELDS);
+    for (ColumnField sf : SPECIAL_FIELDS.values()) {
+        ALL_FIELDS.put(sf.getColumnName(), sf);
+    }
+  }
+
+  @Override
+  public Map<String, ColumnField> getBasicFields() {
+    return BASIC_FIELDS;
+  }
+
+  @Override
+  public Map<Class, ColumnField> getSpecialFields() {
+    return SPECIAL_FIELDS;
+  }
+
   public DUserMapper(Supplier supplier) {
     this.supplier = supplier;
   }
@@ -68,47 +151,79 @@ public class DUserMapper
 
   @Override
   public DUser fromReadValue(Object value) {
-    final DUser entity = new DUser();
+    return fromReadValue(value, supplier);
+  }
+
+  @Override
+  public <RV> DUser fromReadValue(RV value, Supplier<Object, RV, ?, ?> specificSupplier) {
+    DUser entity = (DUser) specificSupplier.createEntity(this, value);
+    if (null != entity) {
+      return entity;
+    }
+
+    entity = new DUser();
 
     // set primary key:
-    final Object key = supplier.getKey(value, Field.ID.getFieldName());
-    entity.setId(supplier.toLongKey(key));
+    final Object key = specificSupplier.getKey(value, Field.ID.getFieldName());
+    entity.setId(specificSupplier.toLongKey(key));
 
     // set all fields:
-    entity.setAddress1(supplier.getString(value, Field.ADDRESS1.getFieldName()));
-    entity.setAddress2(supplier.getString(value, Field.ADDRESS2.getFieldName()));
-    entity.setBirthInfo(supplier.getString(value, Field.BIRTHINFO.getFieldName()));
-    entity.setCity(supplier.getString(value, Field.CITY.getFieldName()));
-    entity.setCountry(supplier.getString(value, Field.COUNTRY.getFieldName()));
-    entity.setCreatedBy(supplier.getString(value, Field.CREATEDBY.getFieldName()));
-    entity.setCreatedDate(supplier.getDate(value, Field.CREATEDDATE.getFieldName()));
-    entity.setDisplayName(supplier.getString(value, Field.DISPLAYNAME.getFieldName()));
-    entity.setEmail(supplier.getString(value, Field.EMAIL.getFieldName()));
-    entity.setFirstName(supplier.getString(value, Field.FIRSTNAME.getFieldName()));
-    entity.setFriends(supplier.getCollection(value, Field.FRIENDS.getFieldName()));
-    entity.setLastName(supplier.getString(value, Field.LASTNAME.getFieldName()));
-    entity.setPassword(supplier.getString(value, Field.PASSWORD.getFieldName()));
-    entity.setPhoneNumber1(supplier.getString(value, Field.PHONENUMBER1.getFieldName()));
-    entity.setPhoneNumber2(supplier.getString(value, Field.PHONENUMBER2.getFieldName()));
-    entity.setProfileLink(supplier.getString(value, Field.PROFILELINK.getFieldName()));
-    entity.setRoles(supplier.getCollection(value, Field.ROLES.getFieldName()));
-    entity.setState(supplier.getInteger(value, Field.STATE.getFieldName()));
-    entity.setThumbnailUrl(supplier.getString(value, Field.THUMBNAILURL.getFieldName()));
-    entity.setUpdatedBy(supplier.getString(value, Field.UPDATEDBY.getFieldName()));
-    entity.setUpdatedDate(supplier.getDate(value, Field.UPDATEDDATE.getFieldName()));
-    entity.setUsername(supplier.getString(value, Field.USERNAME.getFieldName()));
-    entity.setZipCode(supplier.getString(value, Field.ZIPCODE.getFieldName()));
+    entity.setAddress1(specificSupplier.getString(value, Field.ADDRESS1.getFieldName()));
+    entity.setAddress2(specificSupplier.getString(value, Field.ADDRESS2.getFieldName()));
+    entity.setBirthInfo(specificSupplier.getString(value, Field.BIRTHINFO.getFieldName()));
+    entity.setCity(specificSupplier.getString(value, Field.CITY.getFieldName()));
+    entity.setCountry(specificSupplier.getString(value, Field.COUNTRY.getFieldName()));
+    entity.setCreatedBy(specificSupplier.getString(value, Field.CREATEDBY.getFieldName()));
+    entity.setCreatedDate(specificSupplier.getDate(value, Field.CREATEDDATE.getFieldName()));
+    entity.setDisplayName(specificSupplier.getString(value, Field.DISPLAYNAME.getFieldName()));
+    entity.setEmail(specificSupplier.getString(value, Field.EMAIL.getFieldName()));
+    entity.setFirstName(specificSupplier.getString(value, Field.FIRSTNAME.getFieldName()));
+    entity.setFriends(specificSupplier.getCollection(value, Field.FRIENDS.getFieldName()));
+    entity.setLastName(specificSupplier.getString(value, Field.LASTNAME.getFieldName()));
+    entity.setPassword(specificSupplier.getString(value, Field.PASSWORD.getFieldName()));
+    entity.setPhoneNumber1(specificSupplier.getString(value, Field.PHONENUMBER1.getFieldName()));
+    entity.setPhoneNumber2(specificSupplier.getString(value, Field.PHONENUMBER2.getFieldName()));
+    entity.setProfileLink(specificSupplier.getString(value, Field.PROFILELINK.getFieldName()));
+    entity.setRoles(specificSupplier.getCollection(value, Field.ROLES.getFieldName()));
+    entity.setState(specificSupplier.getInteger(value, Field.STATE.getFieldName()));
+    entity.setThumbnailUrl(specificSupplier.getString(value, Field.THUMBNAILURL.getFieldName()));
+    entity.setUpdatedBy(specificSupplier.getString(value, Field.UPDATEDBY.getFieldName()));
+    entity.setUpdatedDate(specificSupplier.getDate(value, Field.UPDATEDDATE.getFieldName()));
+    entity.setUsername(specificSupplier.getString(value, Field.USERNAME.getFieldName()));
+    entity.setZipCode(specificSupplier.getString(value, Field.ZIPCODE.getFieldName()));
     return entity;
   }
+
+    public Field getCreatedByField() {
+    return Field.CREATEDBY;
+    }
 
   @Override
   public String getCreatedByColumnName() {
     return Field.CREATEDBY.getFieldName();
   }
 
+    public Field getCreatedDateField() {
+    return Field.CREATEDDATE;
+    }
+
   @Override
   public String getCreatedDateColumnName() {
     return Field.CREATEDDATE.getFieldName();
+  }
+
+  public Field getPrimaryKeyField() {
+    return Field.ID;
+  }
+
+  @Override
+  public String getPrimaryKeyColumnName() {
+    return Field.ID.getFieldName();
+  }
+
+  @Override
+  public String getParentKeyColumnName() {
+    return null;
   }
 
   @Override
@@ -137,12 +252,17 @@ public class DUserMapper
   }
 
   @Override
+  public void setPrimaryKey(Object writeValue, Object primaryKey) {
+    supplier.setLong(writeValue, Field.ID.getFieldName(), supplier.toLongKey(primaryKey));
+  }
+
+  @Override
   public void updateEntityPostWrite(DUser entity, Object key, Object value) {
     entity.setId(supplier.toLongKey(key));
-    entity.setCreatedBy(supplier.getString(value, Field.CREATEDBY.getFieldName()));
-    entity.setCreatedDate(supplier.getDate(value, Field.CREATEDDATE.getFieldName()));
-    entity.setUpdatedBy(supplier.getString(value, Field.UPDATEDBY.getFieldName()));
-    entity.setUpdatedDate(supplier.getDate(value, Field.UPDATEDDATE.getFieldName()));
+    entity.setCreatedBy(supplier.getWriteString(value, Field.CREATEDBY.getFieldName()));
+    entity.setCreatedDate(supplier.getWriteDate(value, Field.CREATEDDATE.getFieldName()));
+    entity.setUpdatedBy(supplier.getWriteString(value, Field.UPDATEDBY.getFieldName()));
+    entity.setUpdatedDate(supplier.getWriteDate(value, Field.UPDATEDDATE.getFieldName()));
 }
 
 @Override
@@ -159,7 +279,9 @@ public class DUserMapper
   public Object toWriteValue(DUser entity) {
     final Long id = getId(entity);
     final Object parentKey = getParentKey(entity);
-    final Object value = supplier.createWriteValue(parentKey, getKind(), id);
+    final Object value = supplier.createWriteValue(this, parentKey, id, entity);
+    // some suppliers cannot set the keys in above method
+    supplier.setPrimaryKey(value, this, Field.ID.getFieldName(), toKey(parentKey, id), entity);
 
     // set all fields:
     supplier.setString(value, Field.ADDRESS1.getFieldName(), entity.getAddress1());
@@ -187,6 +309,42 @@ public class DUserMapper
     supplier.setString(value, Field.ZIPCODE.getFieldName(), entity.getZipCode());
     return value;
   }
+
+//  @Override
+  public String getWriteSQL(Serializable id, Object writeValue, Collection arguments) {
+    final StringBuilder sql = new StringBuilder("UPDATE ")
+        .append(getKind())
+        .append(" SET ");
+
+    boolean first = true;
+    for (Field f : Field.values()) {
+        if (!getPrimaryKeyField().equals(f) &&
+            !getCreatedByField().equals(f) &&
+            !getCreatedDateField().equals(f)) {
+           if (first) {
+                first = false;
+           }
+           else {
+                sql.append(", ");
+           }
+           sql.append(f.getFieldName())
+            .append("=?");
+           if (null != arguments && null != writeValue) {
+            Object arg = supplier.getWriteObject(writeValue, f.getFieldName());
+            arguments.add(arg);
+           }
+        }
+    }
+
+    sql.append(" WHERE ")
+        .append(getPrimaryKeyColumnName())
+        .append("=?");
+    if (null != arguments) {
+        arguments.add(id);
+    }
+    return sql.toString();
+  }
+
 
   public static Builder newBuilder() {
     return new Builder();

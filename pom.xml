@@ -16,6 +16,7 @@
         <module>guja-core</module>
         <module>guja-base</module>
         <module>guja-gae</module>
+        <module>guja-j2ee</module>
         <module>guja-appengine-war</module>
         <module>guja-appengine-ear</module>
         <module>guja-jetty-war</module>
@@ -25,7 +26,7 @@
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <gae.version>1.9.10</gae.version>
         <appengine.target.version>1.9.10</appengine.target.version>
-        <mardao.version>3.0.12</mardao.version>
+        <mardao.version>3.0.14-SNAPSHOT</mardao.version>
     </properties>
         
     <dependencyManagement>
@@ -43,6 +44,11 @@
             <dependency>
                 <groupId>com.wadpam.guja</groupId>
                 <artifactId>guja-gae</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.wadpam.guja</groupId>
+                <artifactId>guja-j2ee</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
