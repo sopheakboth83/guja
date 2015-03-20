@@ -2,10 +2,8 @@ package com.wadpam.guja.persist;
 
 import com.google.inject.Inject;
 import com.wadpam.guja.environment.ServerEnvironment;
-import net.sf.mardao.dao.JdbcDialect;
-import net.sf.mardao.dao.JdbcKey;
-import net.sf.mardao.dao.JdbcSupplier;
-import net.sf.mardao.dao.Mapper;
+import net.sf.mardao.dao.*;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.support.incrementer.DataFieldMaxValueIncrementer;
 
@@ -39,6 +37,44 @@ public class GuicedJdbcSupplier extends JdbcSupplier {
 
                 // retry invocation
                 return super.readValue(tx, mapper, key);
+            }
+            else {
+                throw onMissingTable;
+            }
+        }
+    }
+
+    @Override
+    public JdbcKey writeValue(Connection tx, Mapper mapper, JdbcKey key, JdbcWriteValue value) throws IOException {
+        try {
+            return super.writeValue(tx, mapper, key, value);
+        }
+        catch (BadSqlGrammarException onMissingTable) {
+            if (environment.isDevEnvironment()) {
+                // create Table
+                super.createTable(mapper);
+
+                // retry invocation
+                return super.writeValue(tx, mapper, key, value);
+            }
+            else {
+                throw onMissingTable;
+            }
+        }
+    }
+
+    @Override
+    public JdbcKey insertValue(Connection tx, Mapper mapper, JdbcKey key, JdbcWriteValue value) throws IOException {
+        try {
+            return super.insertValue(tx, mapper, key, value);
+        }
+        catch (InvalidDataAccessApiUsageException onMissingTable) {
+            if (environment.isDevEnvironment()) {
+                // create Table
+                super.createTable(mapper);
+
+                // retry invocation
+                return super.insertValue(tx, mapper, key, value);
             }
             else {
                 throw onMissingTable;
